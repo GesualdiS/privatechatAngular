@@ -12,14 +12,16 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { LoginComponent } from './components/login/login.component';
 import { SigninComponent } from './components/signin/signin.component';
-
+import { HomeComponent } from './components/home/home.component';
+import { MatTreeModule } from '@angular/material/tree';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChatComponent,
     LoginComponent,
-    SigninComponent
+    SigninComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import { SigninComponent } from './components/signin/signin.component';
     MatSidenavModule,
     MatListModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatTreeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

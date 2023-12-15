@@ -1,0 +1,54 @@
+/* Aggiungi stili generici per il corpo della pagina */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+  }
+  
+  /* Stile per l'intestazione h1 */
+  h1 {
+    color: #333;
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  /* Stile per il contenitore del componente mat-tree */
+  mat-tree {
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  /* Stile per i nodi dell'albero */
+  mat-tree-node {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+  }
+  
+  /* Stile per i bottoni nei nodi dell'albero */
+  button.mat-icon-button {
+    margin-right: 8px;
+    color: #555;
+  }
+  
+  /* Stile per l'icona di espansione/contrazione nell'albero */
+  mat-icon {
+    font-size: 18px;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  /* Stile per i nodi espandibili/contrattibili */
+  mat-tree-node.hasChild button[matTreeNodeToggle] {
+    cursor: pointer;
+  }
+  
+  /* Aggiungi stile quando il nodo è selezionato */
+  mat-tree-node.mat-tree-node-selected {
+    background-color: #e0e0e0;
+  }
+  
