@@ -1,1 +1,43 @@
-<p>login works!</p>
+
+<ng-template #verticalContent>
+  <div>Make your screen larger to see a horizontal stepper</div>
+</ng-template>
+
+<mat-stepper class="example-stepper" [orientation]="(stepperOrientation | async)!">
+  class="example-stepper"
+  [orientation]="(stepperOrientation | async)!">
+  <mat-step [stepControl]="firstFormGroup" label="Fill out your email">
+    <form [formGroup]="firstFormGroup">
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="firstCtrl" placeholder="Ex. example@gmail.com"
+               required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" label="Fill out your password">
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="secondCtrl" placeholder="Ex. 012345678" [type]="hidePassword ? 'password' : 'text'" required>
+      <mat-icon matSuffix (click)="togglePasswordVisibility()">{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+    </mat-form-field>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext>Next</button>
+    </div>
+
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <div>
+      <button mat-button>Confirm your settings</button>
+    </div>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+    </div>
+  </mat-step>
+</mat-stepper>

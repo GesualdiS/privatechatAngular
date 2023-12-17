@@ -11,20 +11,30 @@ import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { LoginComponent } from './components/login/login.component';
-import { SigninComponent } from './components/signin/signin.component';
 import { HomeComponent } from './components/home/home.component';
 import { MatTreeModule } from '@angular/material/tree';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatStepperModule} from '@angular/material/stepper';
+import { AuthComponent } from './components/auth/auth.component';
+import { SignupComponent } from './components/signup/signup.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChatComponent,
     LoginComponent,
-    SigninComponent,
-    HomeComponent
+    HomeComponent,
+    AuthComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
+    MatInputModule,
+    MatFormFieldModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
@@ -32,7 +42,12 @@ import { MatTreeModule } from '@angular/material/tree';
     MatListModule,
     MatIconModule,
     MatToolbarModule,
-    MatTreeModule
+    MatTreeModule,
+    MatStepperModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatTabsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
