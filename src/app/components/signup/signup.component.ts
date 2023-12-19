@@ -36,8 +36,8 @@ export class SignupComponent{
 
   createUser(){
     let username = this.firstFormGroup.get('firstCtrl')?.value!
-    let email = this.secondFormGroup.get('secondCtrl')?.value!
-    let password = this.thirdFormGroup.get('thirdCtrl')?.value!
+    let password = this.secondFormGroup.get('secondCtrl')?.value!
+    let email = this.thirdFormGroup.get('thirdCtrl')?.value!
     console.log(email, username, password)
     this.auth.createUser(username, password, email)
   }

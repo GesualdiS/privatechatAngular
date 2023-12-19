@@ -16,7 +16,7 @@ export class LoginComponent{
   constructor(
     private _formBuilder: FormBuilder,
     breakpointObserver: BreakpointObserver,
-    auth: AuthService
+    private auth: AuthService
   ) {
     this.stepperOrientation = breakpointObserver
       .observe('(min-width: 800px)')
@@ -36,4 +36,11 @@ export class LoginComponent{
   togglePasswordVisibility() {
     this.hidePassword = !this.hidePassword;
   }
+
+  login() {
+    let email = this.firstFormGroup.get('firstCtrl')?.value!;
+    let password = this.secondFormGroup.get('secondCtrl')?.value!;
+    this.auth.loginUser(email, password);
+  }
+  
 }

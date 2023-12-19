@@ -20,21 +20,22 @@
     </form>
   </mat-step>
   <mat-step [stepControl]="secondFormGroup" label="Fill out your password">
-    <mat-form-field>
-      <mat-label>Password</mat-label>
-      <input matInput formControlName="secondCtrl" placeholder="Ex. 012345678" [type]="hidePassword ? 'password' : 'text'" required>
-      <mat-icon matSuffix (click)="togglePasswordVisibility()">{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
-    </mat-form-field>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
-    </div>
-
+    <form [formGroup]="secondFormGroup">
+      <mat-form-field [formGroup]="secondFormGroup">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="secondCtrl" placeholder="Ex. 012345678" [type]="hidePassword ? 'password' : 'text'" required>
+        <mat-icon matSuffix (click)="togglePasswordVisibility()">{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
     <div>
-      <button mat-button>Confirm your settings</button>
+      <button mat-button (click) = "login()">Confirm your settings</button>
     </div>
     <div>
       <button mat-button matStepperPrevious>Back</button>
