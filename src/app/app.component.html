@@ -5,12 +5,12 @@
     </button>
   </div>
   <div class="right-content">
-    <a href="/login">
+    <a *ngIf="!auth.isLogged" href="/login">
       <button mat-icon-button class="icon">
         <mat-icon>login</mat-icon>
       </button>
     </a>
-    <a href="/logout"><button mat-icon-button class="icon">
+    <a href="/home/logout"><button mat-icon-button class="icon">
         <mat-icon>logout</mat-icon>
       </button>
     </a>

@@ -21,6 +21,12 @@ import { AuthComponent } from './components/auth/auth.component';
 import { SignupComponent } from './components/signup/signup.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { HttpClientModule } from '@angular/common/http';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
+import {MatCardModule} from '@angular/material/card';
+import { AfterLoginComponent } from './components/after-login/after-login.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { AfterVerifyEmailComponent } from './components/after-verify-email/after-verify-email.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +35,11 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     HomeComponent,
     AuthComponent,
-    SignupComponent
+    SignupComponent,
+    VerifyEmailComponent,
+    AfterLoginComponent,
+    LogoutComponent,
+    AfterVerifyEmailComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +57,9 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     MatTabsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

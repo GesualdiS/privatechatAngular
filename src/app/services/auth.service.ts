@@ -1,22 +1,35 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { Router } from '@angular/router';
+interface AuthResponse {
+  result: string,
+}
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
-  createUser(username: String, email: String, password: String){
-    this.http.post('http://localhost:3000/api/crud/createUser', {username: username, email: email, password: password}).subscribe((data) => {
-      console.log(data);
+  public isLogged: Boolean = false
+
+  createUser(username: string, email: string, password: string){
+
+    this.http.post<AuthResponse>('https://privatechat.azurewebsites.net/api/crud/createUser', {username: username, email: email, password: password}).subscribe((data) => {
+      if (data.result === "User created successfully") {
+        this.router.navigate(['/home/verifyEmail']);
+        localStorage.setItem('username', username);
+        this.isLogged = true
+      }
     });
   }
 
   loginUser(email: String, password: String){
-    this.http.post('http://localhost:3000/api/auth/login', {email: email, password: password}).subscribe((data) => {
-      console.log(data);
+    this.http.post<AuthResponse>('https://privatechat.azurewebsites.net/api/auth/login', {email: email, password: password}).subscribe((data) => {
+      if (data.result === "User verified") {
+        this.router.navigate(['/home/afterLogin']);
+      }
+      console.log(data)
     });
   }
 }

@@ -9,7 +9,6 @@ Requisiti:
 - mostrare le chat del customer a sinistra come su whatsapp;
 
 Compiti da fare:
-- collegare il back-end con il front-end, sorpassando il problema cors (chiedere a Tacchino);
 - salvare dei jwt una volta che l'utente si è autentificato;
 - mostrare le chat a cui ha partecipato un utente;
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import {FlatTreeControl} from '@angular/cdk/tree';
 import {MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule} from '@angular/material/tree';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 interface Point {
   name: string;
@@ -38,7 +39,8 @@ interface ExampleFlatNode {
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent{
+
   private _transformer = (node: Point, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
@@ -61,7 +63,7 @@ export class HomeComponent {
 
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-  constructor() {
+  constructor(private _snackBar: MatSnackBar) {
     this.dataSource.data = TREE_DATA;
   }
 
