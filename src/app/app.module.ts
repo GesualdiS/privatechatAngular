@@ -27,6 +27,8 @@ import {MatCardModule} from '@angular/material/card';
 import { AfterLoginComponent } from './components/after-login/after-login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { AfterVerifyEmailComponent } from './components/after-verify-email/after-verify-email.component';
+import { LoginErrorComponent } from './components/login-error/login-error.component';
+import { SignupErrorComponent } from './components/signup-error/signup-error.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { AfterVerifyEmailComponent } from './components/after-verify-email/after
     VerifyEmailComponent,
     AfterLoginComponent,
     LogoutComponent,
-    AfterVerifyEmailComponent
+    AfterVerifyEmailComponent,
+    LoginErrorComponent,
+    SignupErrorComponent
   ],
   imports: [
     BrowserModule,

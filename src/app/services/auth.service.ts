@@ -14,7 +14,6 @@ export class AuthService {
   public isLogged: Boolean = false
 
   createUser(username: string, email: string, password: string){
-
     this.http.post<AuthResponse>('https://privatechat.azurewebsites.net/api/crud/createUser', {username: username, email: email, password: password}).subscribe((data) => {
       if (data.result === "User created successfully") {
         this.router.navigate(['/home/verifyEmail']);
@@ -28,6 +27,8 @@ export class AuthService {
     this.http.post<AuthResponse>('https://privatechat.azurewebsites.net/api/auth/login', {email: email, password: password}).subscribe((data) => {
       if (data.result === "User verified") {
         this.router.navigate(['/home/afterLogin']);
+      }else{
+        this.router.navigate(['/login/loginError']);
       }
       console.log(data)
     });
