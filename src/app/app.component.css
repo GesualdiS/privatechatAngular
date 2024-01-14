@@ -24,15 +24,21 @@
 }
 
 a {
-  text-decoration: none; 
+  text-decoration: none;
   color: inherit;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 a:active {
-  outline: none; 
+  outline: none;
 }
 
 .right-content {
   display: flex;
+}
+
+.user-info {
+  font-weight: bold;
+  color: #333; /* Set your desired text color */
+  margin-right: 20px; /* Adjust margin as needed */
 }

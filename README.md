@@ -9,7 +9,7 @@ Requisiti:
 - mostrare le chat del customer a sinistra come su whatsapp;
 
 Compiti da fare:
-- salvare dei jwt una volta che l'utente si è autentificato;
+- mandare i jwt una volta che l'utente si è autentificato;
 - mostrare le chat a cui ha partecipato un utente;
 
 

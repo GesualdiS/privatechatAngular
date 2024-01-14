@@ -1,6 +1,7 @@
-<div *ngIf="isLoggedIn; else notLoggedIn">
+<div *ngIf="wasLogged; else notLoggedIn">
   <p>Congratulations! You've successfully logged out. We hope you enjoy the freedom of not accessing any content. What an accomplishment!</p>
 </div>
 <ng-template #notLoggedIn>
   <p>Oh no! Looks like you forgot to log in. Don't worry, you're not missing out on anything exciting. Log in to discover a world of mediocrity!</p>
 </ng-template>
+

@@ -29,6 +29,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { AfterVerifyEmailComponent } from './components/after-verify-email/after-verify-email.component';
 import { LoginErrorComponent } from './components/login-error/login-error.component';
 import { SignupErrorComponent } from './components/signup-error/signup-error.component';
+import { ChatsComponent } from './components/chats/chats.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { SignupErrorComponent } from './components/signup-error/signup-error.com
     LogoutComponent,
     AfterVerifyEmailComponent,
     LoginErrorComponent,
-    SignupErrorComponent
+    SignupErrorComponent,
+    ChatsComponent
   ],
   imports: [
     BrowserModule,

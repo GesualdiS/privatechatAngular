@@ -1,7 +1,7 @@
 *{
     text-align: center;
   }
-  
+
   /* Basic styling for the sarcastic logout component */
   div {
     margin: 20px;
@@ -10,10 +10,10 @@
     border-radius: 5px;
     background-color: #f8f8f8;
   }
-  
-  p {
+
+  p{
+    color: red;
     font-size: 16px;
-    line-height: 1.5;
-    color: #333;
-  }
-  
+    font-weight: bold;
+    margin-top: 10px;
+}

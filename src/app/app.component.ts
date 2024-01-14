@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AuthService } from './services/auth.service';
 
 @Component({
@@ -8,10 +8,14 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent implements OnInit {
 
+  public user = localStorage.getItem("username")
+
+  public isLogged = localStorage.getItem("isLogged") === "true"
+
   constructor (public auth: AuthService){  }
 
   ngOnInit(): void {
-    // dobbiamo scrivere il codice per fare il login all'accensione dell'app tramite jwt
+    this.isLogged = localStorage.getItem("isLogged") === "true";
   }
   title = 'privatechat';
 }

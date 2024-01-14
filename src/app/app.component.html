@@ -5,12 +5,15 @@
     </button>
   </div>
   <div class="right-content">
-    <a *ngIf="!auth.isLogged" href="/login">
+    <!-- Show the button only when not logged in -->
+    <button *ngIf="!isLogged" mat-icon-button class="icon" [routerLink]="['/login']">
+      <mat-icon>login</mat-icon>
+    </button>
+    <mat-card *ngIf="isLogged">
+      <mat-card-content>{{ user }}</mat-card-content>
+    </mat-card>
+    <a href="/home/logout">
       <button mat-icon-button class="icon">
-        <mat-icon>login</mat-icon>
-      </button>
-    </a>
-    <a href="/home/logout"><button mat-icon-button class="icon">
         <mat-icon>logout</mat-icon>
       </button>
     </a>
@@ -20,7 +23,7 @@
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <h3><a href="/home">HOME</a></h3>
-    <h3>CHATS</h3>
+    <h3><a href="/chats">CHATS</a></h3>
     <mat-list>
       <mat-list-item>
         <span matListItemTitle>CHAT</span>
