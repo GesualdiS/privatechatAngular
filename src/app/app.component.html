@@ -25,11 +25,9 @@
     <h3><a href="/home">HOME</a></h3>
     <h3><a href="/chats">CHATS</a></h3>
     <mat-list>
-      <mat-list-item>
-        <span matListItemTitle>CHAT</span>
-      </mat-list-item>
-      <mat-list-item>Stamperemo tutte le chat</mat-list-item>
-      <mat-list-item>con ngfor</mat-list-item>
+      <button *ngIf="isLogged" mat-icon-button class="icon" [routerLink]="['/addChat']">
+        <mat-icon>add</mat-icon>
+      </button>
     </mat-list>
   </mat-drawer>
 

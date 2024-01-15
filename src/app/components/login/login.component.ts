@@ -22,11 +22,11 @@ export class LoginComponent{
       .observe('(min-width: 800px)')
       .pipe(map(({matches}) => (matches ? 'horizontal' : 'vertical')));
   }
-  
+
   hidePassword = true
 
   firstFormGroup = this._formBuilder.group({
-    firstCtrl: ['', Validators.required, Validators.email],
+    firstCtrl: ['', [Validators.required, Validators.email]],
   });
   secondFormGroup = this._formBuilder.group({
     secondCtrl: ['', Validators.required],
@@ -42,5 +42,5 @@ export class LoginComponent{
     let password = this.secondFormGroup.get('secondCtrl')?.value!;
     this.auth.loginUser(email, password);
   }
-  
+
 }

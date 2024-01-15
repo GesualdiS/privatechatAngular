@@ -1,0 +1,65 @@
+<mat-accordion>
+  <!-- First Expansion Panel -->
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        How to Chat with a Friend
+      </mat-panel-title>
+      <mat-panel-description>
+        If you want information on how to add a chat with your friend, click here.
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>
+      To start a chat with your friend, follow these steps:
+    </p>
+    <p>
+      1. Click add a Chat with a Friend
+    </p>
+    <p>
+      2. Insert the email of the friend
+    </p>
+    <p>
+      3. Send click Add friend and start chat!
+    </p>
+  </mat-expansion-panel>
+
+  <!-- Second Expansion Panel -->
+  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Add a Chat with a Friend
+      </mat-panel-title>
+      <mat-panel-description>
+        Currently I am {{ panelOpenState ? 'open' : 'closed' }}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <!-- Mat Stepper inside the Second Expansion Panel -->
+    <mat-stepper class="example-stepper" [orientation]="(stepperOrientation | async)!">
+      <!-- Step 1 -->
+      <mat-step [stepControl]="firstFormGroup" label="Insert your friend's email">
+        <form [formGroup]="firstFormGroup">
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="firstCtrl" placeholder="Ex. example@gmail.com" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <!-- Step 2 -->
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <div>
+          <p>Review your information and click "Add your friend" to initiate the chat.</p>
+          <button mat-button (click)="addChat()">Add your friend</button>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  </mat-expansion-panel>
+</mat-accordion>

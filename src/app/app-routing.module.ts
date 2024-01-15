@@ -10,6 +10,7 @@ import { LoginErrorComponent } from './components/login-error/login-error.compon
 import { SignupErrorComponent } from './components/signup-error/signup-error.component';
 import { ChatsComponent } from './components/chats/chats.component';
 import { AfterLoginComponent } from './components/after-login/after-login.component';
+import { AddChatComponent } from './components/add-chat/add-chat.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -28,7 +29,7 @@ const routes: Routes = [
   ]},
   { path: 'verify-email', component: AfterVerifyEmailComponent },
   { path: 'verify-email/:token', component: AfterVerifyEmailComponent },
-
+  { path: 'addChat', component: AddChatComponent },
 ];
 
 @NgModule({

@@ -30,6 +30,8 @@ import { AfterVerifyEmailComponent } from './components/after-verify-email/after
 import { LoginErrorComponent } from './components/login-error/login-error.component';
 import { SignupErrorComponent } from './components/signup-error/signup-error.component';
 import { ChatsComponent } from './components/chats/chats.component';
+import { AddChatComponent } from './components/add-chat/add-chat.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { ChatsComponent } from './components/chats/chats.component';
     AfterVerifyEmailComponent,
     LoginErrorComponent,
     SignupErrorComponent,
-    ChatsComponent
+    ChatsComponent,
+    AddChatComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +68,8 @@ import { ChatsComponent } from './components/chats/chats.component';
     MatTabsModule,
     HttpClientModule,
     MatSnackBarModule,
-    MatCardModule
+    MatCardModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
