@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 interface AuthResponse {
   result: string,
 }
@@ -15,9 +16,13 @@ interface VerifyResponse {
 })
 export class AuthService {
 
-  private hostname = "privatechat.azurewebsites.net"
+  public signupError = false
+  public loginError = false
 
-  constructor(private http: HttpClient, private router: Router) { }
+  private hostname = "privatechat.azurewebsites.net"
+  user: any;
+
+  constructor(private http: HttpClient, private router: Router, private cookieService: CookieService) { }
 
   async verifyEmail<VerifyResponse>(token: string): Promise<VerifyResponse> {
     try {
@@ -30,14 +35,15 @@ export class AuthService {
 
 
   createUser(username: string, email: string, password: string){
-    this.http.post<AuthResponse>(`https://${this.hostname}/api/crud/createUser`, {username: username, email: email, password: password}).subscribe((data) => {
+    return this.http.post<AuthResponse>(`https://${this.hostname}/api/crud/createUser`, {username: username, email: email, password: password}).subscribe((data) => {
       if (data.result === "User created successfully") {
-        this.router.navigate(['/home/verifyEmail']);
+        this.signupError = false
         localStorage.setItem('username', username);
+        this.router.navigate(['/home/verifyEmail']);
       }
     }, (error) =>{
       console.error('Error during login:', error);
-      this.router.navigate(['/signup/signupError']);
+      this.signupError = true
     });
   }
 
@@ -45,20 +51,23 @@ export class AuthService {
     this.http.post<VerifyResponse>(`https://${this.hostname}/api/auth/login`, { email: email, password: password }).subscribe((data) => {
       if (data.result === "User verified") {
         localStorage.setItem("isLogged", "true");
-        localStorage.setItem("accessToken", data.accessToken);
-        localStorage.setItem("refreshToken", data.refreshToken);
+        this.cookieService.set('accessToken', data.accessToken);
+        this.cookieService.set('refreshToken', data.refreshToken);
         localStorage.setItem("username", data.username);
         this.router.navigate(['/home/afterLogin']);
+        this.loginError = false       
+        
       }else {
-        this.router.navigate(['/login/loginError']);
+        this.loginError = true
       }
     },(error) => {
       console.error('Error during login:', error);
-      this.router.navigate(['/login/loginError']);
+      this.loginError = true
     });
   }
 
   logout(){
     localStorage.clear()
+    this.cookieService.deleteAll();
   }
 }

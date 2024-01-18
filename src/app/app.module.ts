@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -32,6 +31,7 @@ import { SignupErrorComponent } from './components/signup-error/signup-error.com
 import { ChatsComponent } from './components/chats/chats.component';
 import { AddChatComponent } from './components/add-chat/add-chat.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -69,9 +69,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
     HttpClientModule,
     MatSnackBarModule,
     MatCardModule,
-    MatExpansionModule
+    MatExpansionModule, 
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

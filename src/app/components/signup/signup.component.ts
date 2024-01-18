@@ -13,6 +13,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SignupComponent{
   hidePassword = true
+  public ris = false
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
   });
@@ -27,7 +28,7 @@ export class SignupComponent{
   constructor(
     private _formBuilder: FormBuilder,
     breakpointObserver: BreakpointObserver,
-    private auth: AuthService
+    public auth: AuthService
   ) {
     this.stepperOrientation = breakpointObserver
       .observe('(min-width: 800px)')

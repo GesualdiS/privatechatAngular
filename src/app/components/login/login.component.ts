@@ -16,7 +16,7 @@ export class LoginComponent{
   constructor(
     private _formBuilder: FormBuilder,
     breakpointObserver: BreakpointObserver,
-    private auth: AuthService
+    public auth: AuthService
   ) {
     this.stepperOrientation = breakpointObserver
       .observe('(min-width: 800px)')

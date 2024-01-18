@@ -19,3 +19,8 @@ export class LogoutComponent{
   }
 
 }
+
+// Zhang è il migliore
+// l = 69
+// for i in range (l):
+//    print("COSTA OBESE")
