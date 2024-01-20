@@ -32,6 +32,8 @@ import { ChatsComponent } from './components/chats/chats.component';
 import { AddChatComponent } from './components/add-chat/add-chat.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { CookieService } from 'ngx-cookie-service';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -69,7 +71,9 @@ import { CookieService } from 'ngx-cookie-service';
     HttpClientModule,
     MatSnackBarModule,
     MatCardModule,
-    MatExpansionModule, 
+    MatExpansionModule,
+    MatProgressBarModule,
+    NgbModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

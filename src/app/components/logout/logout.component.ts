@@ -12,10 +12,14 @@ export class LogoutComponent{
 
   constructor(public auth: AuthService){
     this.wasLogged = localStorage.getItem("isLogged") === "true"
-    console.log(this.wasLogged)
-    if(this.wasLogged)
+    if(this.wasLogged){
       this.auth.logout()
-    console.log(this.wasLogged)
+      localStorage.setItem("wasLogged", "true")
+      window.location.reload()
+    }else if(localStorage.getItem("wasLogged") === "true"){
+      localStorage.clear()
+      this.wasLogged = true
+    }
   }
 
 }

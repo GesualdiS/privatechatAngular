@@ -1,5 +1,6 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AuthService } from './services/auth.service';
+import { ChatsService } from './services/chats.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,16 @@ export class AppComponent implements OnInit {
 
   public isLogged = localStorage.getItem("isLogged") === "true"
 
-  constructor (public auth: AuthService){  }
+  public accounts: any;
+
+  constructor (public auth: AuthService, public chat: ChatsService){
+    chat.getChats().subscribe((data) => {
+      this.accounts = data.result;
+    }, (error) => {
+      console.error('Error:', error);
+      chat.serverError = true;
+    });
+  }
 
   ngOnInit(): void {
     this.isLogged = localStorage.getItem("isLogged") === "true";

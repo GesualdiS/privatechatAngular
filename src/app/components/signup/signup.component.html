@@ -42,10 +42,10 @@
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
     <div>
-      <button mat-button (click)="createUser()">Confirm your settings</button>
+      <button mat-button (click)="createUser()" [disabled]="auth.hasClicked">Confirm your settings</button>
     </div>
     <div>
-      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperPrevious [disabled]="auth.hasClicked">Back</button>
     </div>
   </mat-step>
 </mat-stepper>
