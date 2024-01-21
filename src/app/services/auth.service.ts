@@ -60,8 +60,8 @@ export class AuthService {
     this.http.post<VerifyResponse>(`https://${this.hostname}/api/auth/login`, { email: email, password: password }).subscribe((data) => {
       if (data.result === "User verified") {
         localStorage.setItem("isLogged", "true");
-        this.cookieService.set('accessToken', data.accessToken);
-        this.cookieService.set('refreshToken', data.refreshToken);
+        this.cookieService.set('accessToken', data.accessToken, { path: '/', domain: '.privatechat.azurewebsites.net' });
+        this.cookieService.set('refreshToken', data.refreshToken, { path: '/', domain: '.privatechat.azurewebsites.net'});
         localStorage.setItem("username", data.username);
         this.router.navigate(['/home/afterLogin']);
         this.loginError = false
@@ -80,6 +80,7 @@ export class AuthService {
 
   logout(){
     localStorage.clear()
-    this.cookieService.deleteAll()
+    this.cookieService.delete('accessToken', '/', '.privatechat.azurewebsites.net');
+    this.cookieService.delete('refreshToken', '/', '.privatechat.azurewebsites.net');
   }
 }

@@ -26,7 +26,7 @@
     <h4><a href="/chats">CHATS</a></h4>
     <mat-list>
       <mat-list-item *ngFor="let account of accounts">
-        <a [routerLink]="['/chat']">{{ account.name }}</a>
+        <a [routerLink]="['/chat']">{{ account.username }}</a>
       </mat-list-item>
       <button *ngIf="isLogged" mat-icon-button class="icon" [routerLink]="['/addChat']">
         <mat-icon>add</mat-icon>
