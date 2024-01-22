@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { VerifyEmailComponent } from '../verify-email/verify-email.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface VerifyResponse {
   result: string,
@@ -18,7 +19,7 @@ export class AfterVerifyEmailComponent {
   public text!: String
   private response! : VerifyResponse
 
-  constructor (private router: Router, private route: ActivatedRoute, private auth: AuthService){
+  constructor (private router: Router, private route: ActivatedRoute, private auth: AuthService, private _snackBar: MatSnackBar){
 
   }
 
@@ -29,15 +30,15 @@ export class AfterVerifyEmailComponent {
         this.response = await this.auth.verifyEmail(token)
         if(this.response.result === "User verified"){
           console.log('Email verified:', this.response);
-          this.text = "Congratulations! Your email has been verified. Prepare for a life-changing experience.";
+          this._snackBar.open("Congratulations! Your email has been verified.", 'Close');
           localStorage.setItem("accessToken", this.response.accessToken)
           localStorage.setItem("refreshToken", this.response.refreshToken)
         }else{
           console.log('Email not verified:', this.response);
-          this.text = "Uh-oh! Looks like there was an issue verifying your email. Gremlins, perhaps?";
+          this._snackBar.open("Uh-oh! Looks like there was an issue verifying your email. Gremlins, perhaps?", 'Close');
         }
       }else{
-        this.text = "You are sure you clicked on the right link? Maybe we did something wrong."
+        this._snackBar.open("You are sure you clicked on the right link? Maybe we did something wrong.", 'Close');
       }
     });
   }

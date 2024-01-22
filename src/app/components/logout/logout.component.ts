@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class LogoutComponent{
 
   public wasLogged!: Boolean;
 
-  constructor(public auth: AuthService){
+  constructor(public auth: AuthService, private _snackBar: MatSnackBar){
     this.wasLogged = localStorage.getItem("isLogged") === "true"
     if(this.wasLogged){
       this.auth.logout()
@@ -18,7 +19,9 @@ export class LogoutComponent{
       window.location.reload()
     }else if(localStorage.getItem("wasLogged") === "true"){
       localStorage.clear()
-      this.wasLogged = true
+      this._snackBar.open('You\'ve successfully logged out.', 'Close');
+    }else{
+      this._snackBar.open('Looks like you forgot to log in.', 'Close');
     }
   }
 

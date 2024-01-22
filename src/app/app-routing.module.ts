@@ -13,7 +13,7 @@ import { AfterLoginComponent } from './components/after-login/after-login.compon
 import { AddChatComponent } from './components/add-chat/add-chat.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   {path: 'home', component: HomeComponent, children: [
     { path: 'verifyEmail', component:  VerifyEmailComponent},
     { path: 'afterLogin', component:  AfterLoginComponent},

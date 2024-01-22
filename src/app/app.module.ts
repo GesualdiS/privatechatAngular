@@ -34,6 +34,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { CookieService } from 'ngx-cookie-service';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FeaturesComponent } from './components/features/features.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LoginErrorComponent,
     SignupErrorComponent,
     ChatsComponent,
-    AddChatComponent
+    AddChatComponent,
+    FeaturesComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +76,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatCardModule,
     MatExpansionModule,
     MatProgressBarModule,
-    NgbModule
+    NgbModule,
+    CarouselModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

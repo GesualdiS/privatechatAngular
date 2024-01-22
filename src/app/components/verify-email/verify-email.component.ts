@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-verify-email',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class VerifyEmailComponent {
   user = localStorage.getItem('username')
+
+  constructor(private _snackBar: MatSnackBar) {
+    this._snackBar.open(`Hi ${this.user}! If you don\'t see the verification email, please check the spam.`, 'Close');
+  }
 }

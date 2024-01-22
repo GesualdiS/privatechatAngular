@@ -1,20 +1,7 @@
-<h1>Welcome in privatechat</h1>
-<router-outlet></router-outlet>
-<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-    <!-- This is the tree node template for leaf nodes -->
-    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-      <!-- use a disabled button to provide padding for tree leaf -->
-      <button mat-icon-button disabled></button>
-      {{node.name}}
-    </mat-tree-node>
-    <!-- This is the tree node template for expandable nodes -->
-    <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
-      <button mat-icon-button matTreeNodeToggle
-              [attr.aria-label]="'Toggle ' + node.name">
-        <mat-icon class="mat-icon-rtl-mirror">
-          {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-        </mat-icon>
-      </button>
-      {{node.name}}
-    </mat-tree-node>
-  </mat-tree>
+<div class="container">
+  <h1 class="fade-in-up"><b>Welcome to PRIVATECHAT</b></h1>
+  <router-outlet class="fade-in-up"></router-outlet>
+  <p class="fade-in-up">Connect with your friends and family in a private and secure way.</p>
+  <img class="fade-in-up" src="assets/images/privatechatMan.jpeg" alt="man"/>
+  <img class="fade-in-up" src="assets/images/privatechatGirl.jpeg" alt="girl"/>
+</div>
