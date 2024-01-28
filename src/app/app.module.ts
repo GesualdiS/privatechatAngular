@@ -36,7 +36,10 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FeaturesComponent } from './components/features/features.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-
+import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import {MatMenuModule} from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +56,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     SignupErrorComponent,
     ChatsComponent,
     AddChatComponent,
-    FeaturesComponent
+    FeaturesComponent,
+    AccountSettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +81,10 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     MatExpansionModule,
     MatProgressBarModule,
     NgbModule,
-    CarouselModule
+    CarouselModule,
+    NgbDropdownModule,
+    MatMenuModule,
+    MatSelectModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

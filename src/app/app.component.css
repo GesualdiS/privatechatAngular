@@ -41,6 +41,7 @@ This is the palette I'm using for the colors
 
 #container {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   background-color: #113f67;
   color: #f0f8ff;

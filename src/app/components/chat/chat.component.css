@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.example-full-width {
+  position: fixed;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+}
+
+mat-list-item {
+  margin-bottom: 30px;
+}
+
+.message {
+  background-color: #f0f0f0;
+  color: #333;
+  padding: 20px;
+  display: inline-block; /* Ensure messages are displayed in a block */
+  clear: both; /* Clear float to prevent layout issues */
+}
+
+.right-align {
+  text-align: right;
+  float: right;
+}
+
+.left-align {
+  text-align: left;
+  float: left;
+}
+mat-card-subtitle{
+  color: #333;
+  margin-bottom: 20px;
+}
+

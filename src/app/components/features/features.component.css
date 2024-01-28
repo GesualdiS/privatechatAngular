@@ -1,0 +1,8 @@
+/* styles.css */
+.mat-tree-node {
+  padding: 10px;
+}
+.mat-tree{
+  max-width: 80%;
+  margin: 0 auto;
+}

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { VerifyEmailComponent } from '../verify-email/verify-email.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface VerifyResponse {

@@ -11,6 +11,9 @@ import { SignupErrorComponent } from './components/signup-error/signup-error.com
 import { ChatsComponent } from './components/chats/chats.component';
 import { AfterLoginComponent } from './components/after-login/after-login.component';
 import { AddChatComponent } from './components/add-chat/add-chat.component';
+import { ChatComponent } from './components/chat/chat.component';
+import { FeaturesComponent } from './components/features/features.component';
+import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -23,7 +26,10 @@ const routes: Routes = [
   {path: 'login', component: AuthComponent, children: [
     { path: 'loginError', component:  LoginErrorComponent}
   ]},
+  {path: 'help', component: FeaturesComponent},
   {path: 'chats', component: ChatsComponent},
+  {path: 'accountSettings', component: AccountSettingsComponent},
+  {path: 'chat/:email', component: ChatComponent},
   {path: 'signup', component: AuthComponent, children: [
     { path: 'signupError', component:  SignupErrorComponent},
   ]},

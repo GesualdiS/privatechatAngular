@@ -11,6 +11,10 @@ interface VerifyResponse {
   refreshToken: string,
   username: string
 }
+interface refreshAccessTokenResponse {
+  result: string,
+  accessToken: string
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -20,9 +24,13 @@ export class AuthService {
   public loginError = false
   public hasClicked = false
 
-  private hostname = "privatechat.azurewebsites.net"
+  private hostname = "localhost:3000"
   user: any;
+  private protocol = "http";
 
+  get protocolGetter() {
+    return this.protocol;
+  }
   get hostnameGetter() {
     return this.hostname;
   }
@@ -31,7 +39,7 @@ export class AuthService {
 
   async verifyEmail<VerifyResponse>(token: string): Promise<VerifyResponse> {
     try {
-      return await this.http.get<VerifyResponse>(`https://${this.hostname}/api/auth/verifyEmail/${token}`).toPromise() as VerifyResponse;
+      return await this.http.get<VerifyResponse>(`${this.protocol}://${this.hostname}/api/auth/verifyEmail/${token}`).toPromise() as VerifyResponse;
     } catch (error) {
       console.error('Verification error:', error);
       throw error; // Re-throw the error for the component to handle
@@ -41,7 +49,7 @@ export class AuthService {
 
   createUser(username: string, email: string, password: string){
     this.hasClicked = true
-    this.http.post<AuthResponse>(`https://${this.hostname}/api/crud/createUser`, {username: username, email: email, password: password}).subscribe((data) => {
+    this.http.post<AuthResponse>(`${this.protocol}://${this.hostname}/api/crud/createUser`, {username: username, email: email, password: password}).subscribe((data) => {
       if (data.result === "User created successfully") {
         this.signupError = false
         localStorage.setItem('username', username);
@@ -57,11 +65,11 @@ export class AuthService {
 
   loginUser(email: String, password: String) {
     this.hasClicked = true
-    this.http.post<VerifyResponse>(`https://${this.hostname}/api/auth/login`, { email: email, password: password }).subscribe((data) => {
+    this.http.post<VerifyResponse>(`${this.protocol}://${this.hostname}/api/auth/login`, { email: email, password: password }).subscribe((data) => {
       if (data.result === "User verified") {
         localStorage.setItem("isLogged", "true");
-        this.cookieService.set('accessToken', data.accessToken, { path: '/', domain: '.privatechat.azurewebsites.net' });
-        this.cookieService.set('refreshToken', data.refreshToken, { path: '/', domain: '.privatechat.azurewebsites.net'});
+        this.cookieService.set('accessToken', data.accessToken, { path: '/', domain: this.hostname });
+        this.cookieService.set('refreshToken', data.refreshToken, { path: '/', domain: this.hostname});
         localStorage.setItem("username", data.username);
         this.router.navigate(['/home/afterLogin']);
         this.loginError = false
@@ -75,12 +83,22 @@ export class AuthService {
       this.loginError = true
       this.hasClicked = false
     });
-
   }
 
   logout(){
     localStorage.clear()
-    this.cookieService.delete('accessToken', '/', '.privatechat.azurewebsites.net');
-    this.cookieService.delete('refreshToken', '/', '.privatechat.azurewebsites.net');
+    this.cookieService.delete('accessToken', '/', this.hostname);
+    this.cookieService.delete('refreshToken', '/', this.hostname);
+  }
+
+  refreshAccessToken(){
+    this.http.get<refreshAccessTokenResponse>(`${this.protocol}://${this.hostname}/api/auth/login`).subscribe((data) => {
+      if (data.result === "New access token created") {
+        localStorage.setItem("isLogged", "true");
+        this.cookieService.delete('accessToken', '/', this.hostname);
+        this.cookieService.set('accessToken', data.accessToken, { path: '/', domain: this.hostname });
+      }else
+      this.router.navigate(['/login']);
+    })
   }
 }
