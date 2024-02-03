@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
 
   constructor (public auth: AuthService, public chat: ChatsService, private _renderer: Renderer2){
     this._renderer.setStyle(document.body, 'overflow', 'hidden');
+
     chat.getChats().subscribe((data) => {
       this.accounts = data.result;
       this.accounts = data.result.map(account => {

@@ -23,7 +23,7 @@ export class AuthService {
   public signupError = false
   public loginError = false
   public hasClicked = false
-  public sasToken = "st=2024-02-03T08:47:57Z&se=2024-02-03T16:47:57Z&si=images&sip=0.0.0.0-255.255.255.255&spr=https&sv=2022-11-02&sr=c&sig=3yPZ6%2F6FahMRZiLURDS59X3%2BJhoO%2BHOkGJ6NVF2IQlM%3D"
+  public sasToken = "st=2024-02-03T19:51:56Z&se=2024-02-10T03:51:56Z&si=images&sip=0.0.0.0-255.255.255.255&spr=https&sv=2022-11-02&sr=c&sig=a%2BrMBb%2Fcljb27AM7CaisOcBCoGUcZYWi36koQrwJUZY%3D"
 
   public blobImagesUrl = "https://privatechatstorage.blob.core.windows.net/images"
 

@@ -1,29 +1,30 @@
 .container {
   display: flex;
   flex-direction: column;
-  height: 100vh; /* Adjust this value as needed */
-  max-width: 90%; /* Adjust this value as needed */
-  margin: 0 auto;
-  padding: 20px;
+  height: 100vh;
 }
 
 mat-list {
   flex-grow: 1;
   overflow-y: auto;
   margin-top: 0;
-  margin-bottom: 10%;
+  margin-bottom: 12%;
   scroll-behavior: smooth;
 
 }
 
 
-.example-full-width {
+.formContainer {
   position: fixed;
+  width: 60vw;
+  margin-left: 10vw;
   bottom: 0;
-  left: 10%;
-  width: 80%;
 }
 
+.example-full-width{
+  width: 80%;
+  margin-left: 10%;
+}
 
 mat-list-item {
   margin-bottom: 30px;
@@ -33,8 +34,9 @@ mat-list-item {
   background-color: #f0f0f0;
   color: #333;
   padding: 20px;
-  display: inline-block; /* Ensure messages are displayed in a block */
-  clear: both; /* Clear float to prevent layout issues */
+  display: inline-block;
+  clear: both;
+  word-wrap: break-word;
 }
 
 .right-align {
@@ -49,6 +51,31 @@ mat-list-item {
 mat-card-subtitle{
   color: #333;
   margin-bottom: 20px;
+}
+
+/*
+this hide the scrollbar
+*/
+*::-webkit-scrollbar {
+  width: 0px !important;
+  background-color: white !important;
+}
+
+*::-webkit-scrollbar-thumb {
+  width: 0px !important;
+  background-color: whitesmoke !important;
+  border-radius: 0px !important;
+}
+
+*::-webkit-scrollbar:horizontal {
+  width: 0px !important;
+  background-color: white !important;
+}
+
+*::-webkit-scrollbar-thumb:horizontal {
+  width: 0px !important;
+  background-color: whitesmoke !important;
+  border-radius: 0px;
 }
 
 

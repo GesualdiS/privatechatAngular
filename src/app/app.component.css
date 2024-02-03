@@ -18,7 +18,12 @@ This is the palette I'm using for the colors
 }
 */
 
-
+@font-face {
+  font-family: 'Protest riot';
+  src: url('/assets/fonts/ProtestRiot-Regular.ttf') format('truetype');
+  font-weight: bold; /* Adjust font-weight as needed */
+  font-style: normal; /* Adjust font-style as needed */
+}
 
 .example-container {
   width: 100%;
@@ -47,8 +52,18 @@ This is the palette I'm using for the colors
   color: #f0f8ff;
 }
 
+
 .left-content {
   display: flex;
+}
+
+.sidebar-element{
+  margin-bottom: 30px;
+}
+
+h1, h4{
+  font-weight: bold;
+  font-family: 'Protest Riot';
 }
 
 a {

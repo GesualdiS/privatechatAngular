@@ -1,7 +1,7 @@
 <mat-toolbar id="container">
   <div class="left-content">
     <button type="button" mat-button (click)="drawer.toggle()">
-      <b>PRIVATECHAT</b>
+      <h1>PRIVATECHAT</h1>
     </button>
   </div>
   <div class="center-content" *ngIf="isLogged">
@@ -27,20 +27,31 @@
 
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side">
-    <h4><a href="/home">HOME</a></h4>
-    <h4><a href="/help">HELP</a></h4>
-    <h4><a href="/chats">CHATS</a></h4>
-    <mat-list>
-      <mat-list-item *ngFor="let account of accounts" style="margin-bottom: 10px;">
-        <a [routerLink]="['/chat', account.email]" style="color: #f0f8ff; display: flex; flex-direction: row;">
-          <img [src]="account.imageUrl" (error)="account.imageUrl='assets/images/defaultProfilePicture.jpeg'"  alt="Profile Picture" class="profile-picture">
-          <p style="margin-top: 10px; margin-left: 10px;">{{ account.username }}</p>
-        </a>
-      </mat-list-item>
-      <button *ngIf="isLogged" mat-icon-button class="icon" [routerLink]="['/addChat']">
-        <mat-icon>add</mat-icon>
-      </button>
-    </mat-list>
+    <div class="sidebar-element"  style="display: flex; flex-direction: row;">
+      <h4><a href="/home">HOME</a></h4>
+      <mat-icon style="margin-top: 5px; margin-left: 10px;">home</mat-icon>
+    </div>
+    <div class="sidebar-element" style="display: flex; flex-direction: row;">
+      <h4><a href="/help">HELP</a></h4>
+      <mat-icon style="margin-top: 5px; margin-left: 10px;">help</mat-icon>
+    </div>
+    <div class="sidebar-element">
+      <div style="display: flex; flex-direction: row;">
+        <h4><a href="/chats">CHATS</a></h4>
+        <mat-icon style="margin-top: 5px; margin-left: 10px;">chat</mat-icon>
+      </div>
+      <mat-list>
+        <mat-list-item *ngFor="let account of accounts" style="margin-bottom: 10px;">
+          <a [routerLink]="['/chat', account.email]" style="color: #f0f8ff; display: flex; flex-direction: row;">
+            <img [src]="account.imageUrl" (error)="account.imageUrl='assets/images/defaultProfilePicture.jpeg'"  alt="Profile Picture" class="profile-picture">
+            <p style="margin-top: 10px; margin-left: 10px;">{{ account.username }}</p>
+          </a>
+        </mat-list-item>
+        <button *ngIf="isLogged" mat-icon-button class="icon" [routerLink]="['/addChat']">
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-list>
+    </div>
   </mat-drawer>
 
 

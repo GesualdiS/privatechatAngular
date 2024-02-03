@@ -13,6 +13,7 @@ export class ChatComponent implements AfterViewInit{
   @ViewChild('message') messageInput!: ElementRef;
   @ViewChild('chatboxElement', { read: ElementRef }) chatboxElement!: ElementRef;
   private mutationObserver!: MutationObserver;
+  messageSent: Boolean = false;
 
   ngAfterViewInit() {
     this.scrollToBottom();
@@ -33,7 +34,7 @@ export class ChatComponent implements AfterViewInit{
     this.chat.sendMessage(message, this.email).subscribe((data) => {
       console.log(data)
     })
-    this.scrollToBottom();
+    this.messageSent = true;
   }
   messages: any;
   id: number | undefined;
@@ -45,6 +46,7 @@ export class ChatComponent implements AfterViewInit{
     this.email = this.route.snapshot.paramMap.get('email')!;
     this.checkMessages();
     setInterval(() => this.checkMessages(), 2000);
+    this.scrollToBottom();
   }
 
   checkMessages() {
@@ -53,6 +55,10 @@ export class ChatComponent implements AfterViewInit{
       this.messages = data.result;
       this.id = data.id;
     })
+    if(this.messageSent){
+      this.scrollToBottom();
+      this.messageSent = false;
+    }
   }
 
   constructor(private router: Router, private route: ActivatedRoute, private chat: ChatsService) {

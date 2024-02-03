@@ -1,24 +1,28 @@
 <div class="container">
   <mat-list #chatboxElement>
     <mat-list-item *ngFor="let message of messages" [ngClass]="{ 'right-align': id === message.id_sender, 'left-align': id !== message.id_sender }" >
-      <mat-card  class="message">
-        <mat-card-content>
+      <mat-card class="message">
+        <mat-card-content class="message-content">
           <p>{{message.text}}</p>
         </mat-card-content>
         <mat-card-footer>
           <mat-card-subtitle>{{message.insert_date | date:'yyyy-MM-dd HH:mm'}}</mat-card-subtitle>
         </mat-card-footer>
       </mat-card>
+
     </mat-list-item>
   </mat-list>
-  <form class="example-form">
-    <mat-form-field class="example-full-width">
-      <mat-label>Write a message</mat-label>
-      <input matInput #message maxlength="256" placeholder="Ex. I need help with...">
-      <mat-icon matSuffix (click)="sendMessage()">send</mat-icon>
-      <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
-      <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
-    </mat-form-field>
-  </form>
+  <div class="formContainer">
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <mat-label>Write a message</mat-label>
+        <input matInput #message maxlength="256" placeholder="Ex. I need help with..." (keydown.enter)="sendMessage()">
+        <mat-icon matSuffix (click)="sendMessage()">send</mat-icon>
+        <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
+        <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+      </mat-form-field>
+    </form>
+  </div>
+
 </div>
 
