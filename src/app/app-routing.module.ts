@@ -21,7 +21,8 @@ const routes: Routes = [
     { path: 'verifyEmail', component:  VerifyEmailComponent},
     { path: 'afterLogin', component:  AfterLoginComponent},
     {path: 'logout', component: LogoutComponent},
-    {path: 'afterVerifyEmail', component: AfterVerifyEmailComponent},
+    { path: 'verify-email', component: AfterVerifyEmailComponent },
+    { path: 'verify-email/:token', component: AfterVerifyEmailComponent },
   ]},
   {path: 'login', component: AuthComponent, children: [
     { path: 'loginError', component:  LoginErrorComponent}
@@ -33,8 +34,6 @@ const routes: Routes = [
   {path: 'signup', component: AuthComponent, children: [
     { path: 'signupError', component:  SignupErrorComponent},
   ]},
-  { path: 'verify-email', component: AfterVerifyEmailComponent },
-  { path: 'verify-email/:token', component: AfterVerifyEmailComponent },
   { path: 'addChat', component: AddChatComponent },
 ];
 

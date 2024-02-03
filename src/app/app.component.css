@@ -71,7 +71,18 @@ a:active {
   margin-right: 20px; /* Adjust margin as needed */
 }
 
-* {
-  overflow: hidden;
+.profile-picture {
+  width: 50px; /* Set the desired width */
+  height: 50px; /* Set the desired height */
+  border-radius: 50%; /* Make it a circle by setting border-radius to 50% */
+}
+
+.center-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 20px;
 }
 

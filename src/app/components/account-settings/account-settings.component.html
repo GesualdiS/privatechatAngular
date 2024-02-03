@@ -1,6 +1,7 @@
 <h1>ACCOUNT SETTINGS</h1>
-
-<form [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
+<p>Change your account settings here.</p>
+<p>Not filled gap will remain the same as before.</p>
+<form [formGroup]="settingsForm" (ngSubmit)="onSubmit()" class="container">
   <mat-form-field>
     <input matInput placeholder="Username" formControlName="username">
   </mat-form-field>
@@ -25,12 +26,9 @@
     <textarea matInput placeholder="Bio" formControlName="bio"></textarea>
   </mat-form-field>
 
-  <button mat-raised-button color="primary" type="submit">Save Changes</button>
+
+  <input type="file" id="ProfilePicture" (change)="onFileChange($event)" formControlName="ProfilePicture">
+
+
+  <button mat-raised-button color="primary" (click)="onSubmit()">Save Changes</button>
 </form>
-<!--
-  USERNAME => you can change it
-  EMAIL => you can change it
-  PASSWORD => you can change it
-  GENDER => you can change it
-  BIO => you can change it
--->

@@ -1,6 +1,6 @@
 <div class="container">
-  <mat-list>
-    <mat-list-item *ngFor="let message of messages" [ngClass]="{ 'right-align': id === message.id_sender, 'left-align': id !== message.id_sender }">
+  <mat-list #chatboxElement>
+    <mat-list-item *ngFor="let message of messages" [ngClass]="{ 'right-align': id === message.id_sender, 'left-align': id !== message.id_sender }" >
       <mat-card  class="message">
         <mat-card-content>
           <p>{{message.text}}</p>

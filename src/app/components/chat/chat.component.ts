@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChatsService } from 'src/app/services/chats.service';
 import { ViewChild, ElementRef } from '@angular/core';
@@ -9,15 +9,31 @@ import { Router, NavigationEnd } from '@angular/router';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent{
+export class ChatComponent implements AfterViewInit{
   @ViewChild('message') messageInput!: ElementRef;
+  @ViewChild('chatboxElement', { read: ElementRef }) chatboxElement!: ElementRef;
+  private mutationObserver!: MutationObserver;
+
+  ngAfterViewInit() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom() {
+    this.mutationObserver = new MutationObserver(() => this.chatboxElement.nativeElement.scrollTop = this.chatboxElement.nativeElement.scrollHeight);
+    this.mutationObserver.observe(this.chatboxElement.nativeElement, { childList: true });
+    setTimeout(() => this.mutationObserver.disconnect(), 1000)
+  }
 
   sendMessage() {
     const message = this.messageInput.nativeElement.value;
+    if(message == ''){
+      return
+    }
+    this.messageInput.nativeElement.value = '';
     this.chat.sendMessage(message, this.email).subscribe((data) => {
       console.log(data)
-      this.messageInput.nativeElement.value = '';
     })
+    this.scrollToBottom();
   }
   messages: any;
   id: number | undefined;

@@ -4,7 +4,11 @@
       <b>PRIVATECHAT</b>
     </button>
   </div>
-  <p class="center-content" *ngIf="isLogged" style="padding-top: 10px;">{{ user }}</p>
+  <div class="center-content" *ngIf="isLogged">
+    <img [src]="this.imageUrl" (error)="imageUrl='assets/images/defaultProfilePicture.jpeg'"  alt="Profile Picture" class="profile-picture">
+    <p style="padding-top: 15px;">{{ user }}</p>
+  </div>
+
   <div class="right-content">
     <button mat-icon-button class="icon" *ngIf="isLogged" [routerLink]="['/accountSettings']">
       <mat-icon>manage_accounts</mat-icon>
@@ -27,14 +31,18 @@
     <h4><a href="/help">HELP</a></h4>
     <h4><a href="/chats">CHATS</a></h4>
     <mat-list>
-      <mat-list-item *ngFor="let account of accounts">
-        <a [routerLink]="['/chat', account.email]" style="color: #f0f8ff;">{{ account.username }}</a>
+      <mat-list-item *ngFor="let account of accounts" style="margin-bottom: 10px;">
+        <a [routerLink]="['/chat', account.email]" style="color: #f0f8ff; display: flex; flex-direction: row;">
+          <img [src]="account.imageUrl" (error)="account.imageUrl='assets/images/defaultProfilePicture.jpeg'"  alt="Profile Picture" class="profile-picture">
+          <p style="margin-top: 10px; margin-left: 10px;">{{ account.username }}</p>
+        </a>
       </mat-list-item>
       <button *ngIf="isLogged" mat-icon-button class="icon" [routerLink]="['/addChat']">
         <mat-icon>add</mat-icon>
       </button>
     </mat-list>
   </mat-drawer>
+
 
   <div class="example-sidenav-content">
     <router-outlet></router-outlet>

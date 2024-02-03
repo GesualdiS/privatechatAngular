@@ -23,6 +23,9 @@ export class AuthService {
   public signupError = false
   public loginError = false
   public hasClicked = false
+  public sasToken = "st=2024-02-03T08:47:57Z&se=2024-02-03T16:47:57Z&si=images&sip=0.0.0.0-255.255.255.255&spr=https&sv=2022-11-02&sr=c&sig=3yPZ6%2F6FahMRZiLURDS59X3%2BJhoO%2BHOkGJ6NVF2IQlM%3D"
+
+  public blobImagesUrl = "https://privatechatstorage.blob.core.windows.net/images"
 
   private hostname = "localhost:3000"
   user: any;
@@ -63,7 +66,7 @@ export class AuthService {
     });
   }
 
-  loginUser(email: String, password: String) {
+  loginUser(email: string, password: String) {
     this.hasClicked = true
     this.http.post<VerifyResponse>(`${this.protocol}://${this.hostname}/api/auth/login`, { email: email, password: password }).subscribe((data) => {
       if (data.result === "User verified") {
@@ -71,6 +74,7 @@ export class AuthService {
         this.cookieService.set('accessToken', data.accessToken, { path: '/', domain: this.hostname });
         this.cookieService.set('refreshToken', data.refreshToken, { path: '/', domain: this.hostname});
         localStorage.setItem("username", data.username);
+        localStorage.setItem("email", email);
         this.router.navigate(['/home/afterLogin']);
         this.loginError = false
 

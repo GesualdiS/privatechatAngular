@@ -1,6 +1,19 @@
 .container {
   display: flex;
   flex-direction: column;
+  height: 100vh; /* Adjust this value as needed */
+  max-width: 90%; /* Adjust this value as needed */
+  margin: 0 auto;
+  padding: 20px;
+}
+
+mat-list {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-top: 0;
+  margin-bottom: 10%;
+  scroll-behavior: smooth;
+
 }
 
 
@@ -10,6 +23,7 @@
   left: 10%;
   width: 80%;
 }
+
 
 mat-list-item {
   margin-bottom: 30px;
@@ -36,4 +50,5 @@ mat-card-subtitle{
   color: #333;
   margin-bottom: 20px;
 }
+
 

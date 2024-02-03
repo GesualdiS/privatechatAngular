@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-account-settings',
@@ -9,22 +10,57 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AccountSettingsComponent {
   settingsForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private user: UserService) { }
 
   ngOnInit() {
     this.settingsForm = this.fb.group({
-      username: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-      gender: ['', Validators.required],
-      bio: ['']
+      username: ['', ],
+      email: ['', [Validators.email]],
+      password: [''],
+      gender: [''],
+      bio: [''],
+      profilePicture: ['']
     });
+  }
+
+  onFileChange(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.settingsForm.patchValue({
+        profilePicture: file
+      });
+    }
   }
 
   onSubmit() {
     if (this.settingsForm.valid) {
-      console.log(this.settingsForm.value);
-      // Call your API to update the user settings
+      const username = this.settingsForm.get('username')?.value;
+      if (username) {
+        //We are changing the username
+      }
+      const email = this.settingsForm.get('email')?.value;
+      if (email) {
+        //We are changing the email
+      }
+      const password = this.settingsForm.get('password')?.value;
+      if (password) {
+        //We are changing the password
+      }
+      const gender = this.settingsForm.get('gender')?.value;
+      if (gender) {
+        //We are changing the gender
+      }
+      const bio = this.settingsForm.get('bio')?.value;
+      if (bio) {
+        //We are changing the bio
+      }
+
+      const profilePicture = this.settingsForm.get('profilePicture')?.value;
+      if (profilePicture) {
+        this.user.changeProfilePicture(profilePicture).subscribe((res) => {
+          console.log(res);
+        })
+      }
     }
   }
 }
