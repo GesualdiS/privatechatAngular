@@ -27,9 +27,9 @@ export class AuthService {
 
   public blobImagesUrl = "https://privatechatstorage.blob.core.windows.net/images"
 
-  private hostname = "localhost:3000"
+  private hostname = "privatechat.shop"
   user: any;
-  private protocol = "http";
+  private protocol = "https";
 
   get protocolGetter() {
     return this.protocol;
@@ -45,7 +45,7 @@ export class AuthService {
       return await this.http.get<VerifyResponse>(`${this.protocol}://${this.hostname}/api/auth/verifyEmail/${token}`).toPromise() as VerifyResponse;
     } catch (error) {
       console.error('Verification error:', error);
-      throw error; // Re-throw the error for the component to handle
+      throw error;
     }
   }
 
@@ -71,6 +71,7 @@ export class AuthService {
     this.http.post<VerifyResponse>(`${this.protocol}://${this.hostname}/api/auth/login`, { email: email, password: password }).subscribe((data) => {
       if (data.result === "User verified") {
         localStorage.setItem("isLogged", "true");
+        localStorage.setItem("accessTokenDeath", String(Date.now() + 1800000));
         this.cookieService.set('accessToken', data.accessToken, { path: '/', domain: this.hostname });
         this.cookieService.set('refreshToken', data.refreshToken, { path: '/', domain: this.hostname});
         localStorage.setItem("username", data.username);
@@ -93,6 +94,13 @@ export class AuthService {
     localStorage.clear()
     this.cookieService.delete('accessToken', '/', this.hostname);
     this.cookieService.delete('refreshToken', '/', this.hostname);
+  }
+
+  checkAccessToken(){
+    if (localStorage.getItem("accessTokenDeath")! < String(Date.now())){
+      this.refreshAccessToken()
+      localStorage.setItem("accessTokenDeath", String(Date.now() + 1800000));
+    }
   }
 
   refreshAccessToken(){

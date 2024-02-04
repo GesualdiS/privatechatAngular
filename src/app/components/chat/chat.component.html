@@ -1,17 +1,16 @@
 <div class="container">
-  <mat-list #chatboxElement>
-    <mat-list-item *ngFor="let message of messages" [ngClass]="{ 'right-align': id === message.id_sender, 'left-align': id !== message.id_sender }" >
+  <div #chatboxElement class="messages-container">
+    <div class="message-container" *ngFor="let message of messages" [ngClass]="{ 'right-align': id === message.id_sender, 'left-align': id !== message.id_sender }">
       <mat-card class="message">
         <mat-card-content class="message-content">
-          <p>{{message.text}}</p>
+          {{message.text}}
         </mat-card-content>
         <mat-card-footer>
           <mat-card-subtitle>{{message.insert_date | date:'yyyy-MM-dd HH:mm'}}</mat-card-subtitle>
         </mat-card-footer>
       </mat-card>
-
-    </mat-list-item>
-  </mat-list>
+    </div>
+  </div>
   <div class="formContainer">
     <form class="example-form">
       <mat-form-field class="example-full-width">

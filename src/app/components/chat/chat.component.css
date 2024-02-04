@@ -1,23 +1,33 @@
+@font-face {
+  font-family: 'Noto Sans KR';
+  src: url('/assets/fonts/NotoSansKR-VariableFont_wght.ttf') format('truetype');
+  font-weight: bold; /* Adjust font-weight as needed */
+  font-style: normal; /* Adjust font-style as needed */
+}
+
 .container {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  width: 100vw;
 }
 
-mat-list {
+.messages-container {
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
   overflow-y: auto;
+  overflow-x: hidden;
   margin-top: 0;
   margin-bottom: 12%;
   scroll-behavior: smooth;
 
 }
 
-
 .formContainer {
   position: fixed;
   width: 60vw;
-  margin-left: 10vw;
+  margin-left: 15vw;
   bottom: 0;
 }
 
@@ -26,31 +36,37 @@ mat-list {
   margin-left: 10%;
 }
 
-mat-list-item {
+.message-container {
   margin-bottom: 30px;
 }
+
 
 .message {
   background-color: #f0f0f0;
   color: #333;
-  padding: 20px;
+  padding: 10px;
   display: inline-block;
   clear: both;
   word-wrap: break-word;
+  max-width: 35%;
+
+  font-family: 'Noto Sans KR';
 }
 
 .right-align {
+  margin-right: 5%;
   text-align: right;
   float: right;
 }
 
 .left-align {
+  margin-left: 5%;
   text-align: left;
   float: left;
 }
+
 mat-card-subtitle{
   color: #333;
-  margin-bottom: 20px;
 }
 
 /*
