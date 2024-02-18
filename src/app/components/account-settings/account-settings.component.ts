@@ -32,11 +32,17 @@ export class AccountSettingsComponent {
     }
   }
 
+  triggerSelectFile(fileInput: HTMLInputElement) {
+    fileInput.click()
+  }
+
   onSubmit() {
     if (this.settingsForm.valid) {
       const username = this.settingsForm.get('username')?.value;
       if (username) {
-        //We are changing the username
+        this.user.changeUsername(username).subscribe((res) => {
+          console.log(res);
+        })
       }
       const email = this.settingsForm.get('email')?.value;
       if (email) {

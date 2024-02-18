@@ -1,0 +1,126 @@
+<p style="text-align: center;"><b>Passwod will remain the same</b></p>
+<mat-accordion class="example-headers-align">
+  <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Get a token to change email
+      </mat-panel-title>
+      <mat-panel-description>
+        Type your email
+        <mat-icon>account_circle</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-stepper class="example-stepper" [orientation]="(stepperOrientation | async)!">
+      <mat-step [stepControl]="firstFormGroup1" label="Insert your email">
+        <form [formGroup]="firstFormGroup1">
+          <mat-form-field>
+            <mat-label>Enter your email</mat-label>
+            <input matInput placeholder="pat@example.com" formControlName="firstCtrl" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup1" label="Insert your password">
+        <form [formGroup]="secondFormGroup1">
+          <mat-form-field>
+            <mat-label>Enter your password</mat-label>
+            <input matInput formControlName="secondCtrl" [type]="hidePassword ? 'password' : 'text'" placeholder="Ex. 012345678" required>
+            <mat-icon matSuffix (click)="togglePasswordVisibility()">{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <button mat-button (click)="sendToken()">Confirm your settings</button>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+    <mat-action-row>
+      <button mat-button color="primary" (click)="nextStep()">Next</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  <!-- SECOND MAT-EXPANSION-PANEL-->
+  <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Change your email
+      </mat-panel-title>
+      <mat-panel-description>
+        Fill the required fields
+        <mat-icon>question_exchange</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-stepper class="example-stepper" [orientation]="(stepperOrientation | async)!">
+      <mat-step [stepControl]="firstFormGroup" label="Insert your token">
+        <form [formGroup]="firstFormGroup">
+          <mat-form-field>
+            <mat-label>Enter your token</mat-label>
+            <input matInput placeholder="..." formControlName="firstCtrl" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup" label="Insert old email">
+        <form [formGroup]="secondFormGroup">
+          <mat-form-field>
+            <mat-label>Old email</mat-label>
+            <input matInput formControlName="secondCtrl" placeholder="pat@example.com" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="thirdFormGroup" label="Insert new email">
+        <form [formGroup]="thirdFormGroup">
+          <mat-form-field>
+            <mat-label>New email</mat-label>
+            <input matInput formControlName="thirdCtrl" placeholder="pat@example.com" required>
+
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <button mat-button (click)="changePassword()">Confirm your settings</button>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+
+    <mat-action-row>
+      <button mat-button color="warn" (click)="prevStep()">Previous</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<!--
+  Require the token to change the email
+    insert your email:
+  Use the token you received in your email to change your email
+    insert your token:
+    insert your new email:
+    confirm your new email:
+  How do i prevent someone to make me send the email to a customer multiple times?
+  Before sending the email, check if the user_id is already in the database,
+  and then I check the date I sent it.
+  After all of this, I have to verify my new email.
+-->

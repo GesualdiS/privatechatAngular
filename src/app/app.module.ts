@@ -40,6 +40,8 @@ import { AccountSettingsComponent } from './components/account-settings/account-
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { ChangeEmailComponent } from './components/change-email/change-email.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +59,9 @@ import { MatSelectModule } from '@angular/material/select';
     ChatsComponent,
     AddChatComponent,
     FeaturesComponent,
-    AccountSettingsComponent
+    AccountSettingsComponent,
+    ChangePasswordComponent,
+    ChangeEmailComponent
   ],
   imports: [
     BrowserModule,

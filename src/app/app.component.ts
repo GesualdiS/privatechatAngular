@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
 
   constructor (public auth: AuthService, public chat: ChatsService, private _renderer: Renderer2){
     this._renderer.setStyle(document.body, 'overflow', 'hidden');
-
+    this.getSasToken();
     chat.getChats().subscribe((data) => {
       this.accounts = data.result;
       this.accounts = data.result.map(account => {
@@ -35,6 +35,25 @@ export class AppComponent implements OnInit {
       chat.serverError = true;
     });
     this.imageUrl = `${auth.blobImagesUrl}/${localStorage.getItem("email")}-profilePicture.jpeg?${this.auth.sasToken}`;
+  }
+
+  getSasToken(){
+    this.auth.sasToken = localStorage.getItem("sasToken")!;
+    if (!this.auth.sasToken){
+      this.auth.getSasToken().subscribe((data) => {
+        if (data.result === "Error due the unreiceved data" || data.result === "Invalid token") {
+          this.auth.checkAccessToken()
+          setTimeout(() => {
+            this.getSasToken()
+          }, 2000);
+        }else{
+          localStorage.setItem("sasToken",data.result)
+          window.location.reload();
+        }
+      })
+    }else{
+      localStorage.removeItem("sasToken");
+    }
   }
 
   ngOnInit(): void {

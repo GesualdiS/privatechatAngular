@@ -15,6 +15,10 @@ interface refreshAccessTokenResponse {
   result: string,
   accessToken: string
 }
+
+interface getSasTokenResponse {
+  result: string
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -27,9 +31,9 @@ export class AuthService {
 
   public blobImagesUrl = "https://privatechatstorage.blob.core.windows.net/images"
 
-  private hostname = "privatechat.shop"
+  private hostname = "localhost:3000"
   user: any;
-  private protocol = "https";
+  private protocol = "http";
 
   get protocolGetter() {
     return this.protocol;
@@ -97,7 +101,7 @@ export class AuthService {
   }
 
   checkAccessToken(){
-    if (localStorage.getItem("accessTokenDeath")! < String(Date.now())){
+    if (Number(localStorage.getItem("accessTokenDeath")) < Date.now()){
       this.refreshAccessToken()
       localStorage.setItem("accessTokenDeath", String(Date.now() + 1800000));
     }
@@ -110,7 +114,11 @@ export class AuthService {
         this.cookieService.delete('accessToken', '/', this.hostname);
         this.cookieService.set('accessToken', data.accessToken, { path: '/', domain: this.hostname });
       }else
-      this.router.navigate(['/login']);
+        this.router.navigate(['/login']);
     })
+  }
+
+  getSasToken(){
+    return this.http.get<getSasTokenResponse>(`${this.protocol}://${this.hostname}/api/images/getSasToken`)
   }
 }

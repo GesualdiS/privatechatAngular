@@ -14,6 +14,8 @@ import { AddChatComponent } from './components/add-chat/add-chat.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { FeaturesComponent } from './components/features/features.component';
 import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { ChangeEmailComponent } from './components/change-email/change-email.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -30,6 +32,10 @@ const routes: Routes = [
   {path: 'help', component: FeaturesComponent},
   {path: 'chats', component: ChatsComponent},
   {path: 'accountSettings', component: AccountSettingsComponent},
+  {path: 'changePassword', component: ChangePasswordComponent},
+  {path: 'changePassword/:token', component: ChangePasswordComponent},
+  {path: 'changeEmail', component: ChangeEmailComponent},
+  {path: 'changeEmail/:token', component: ChangeEmailComponent},
   {path: 'chat/:email', component: ChatComponent},
   {path: 'signup', component: AuthComponent, children: [
     { path: 'signupError', component:  SignupErrorComponent},

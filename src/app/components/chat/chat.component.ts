@@ -63,9 +63,9 @@ export class ChatComponent implements AfterViewInit{
 
   constructor(private router: Router, private route: ActivatedRoute, private chat: ChatsService) {
     this.router.events.subscribe((event) => {
-    if (event instanceof NavigationEnd) {
-      this.refreshComponent();
-    }
+      if (event instanceof NavigationEnd) {
+        this.refreshComponent();
+      }
     });
   }
 

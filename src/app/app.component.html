@@ -17,7 +17,7 @@
     <button *ngIf="!isLogged" mat-icon-button class="icon" [routerLink]="['/login']">
       <mat-icon>login</mat-icon>
     </button>
-    <a href="/home/logout">
+    <a href="/home/logout" *ngIf="isLogged">
       <button mat-icon-button class="icon">
         <mat-icon>logout</mat-icon>
       </button>

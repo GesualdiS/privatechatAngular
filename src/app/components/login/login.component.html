@@ -6,8 +6,7 @@
     <form [formGroup]="firstFormGroup">
       <mat-form-field>
         <mat-label>Email</mat-label>
-        <input matInput formControlName="firstCtrl" placeholder="Ex. example@gmail.com"
-               required>
+        <input matInput formControlName="firstCtrl" placeholder="Ex. example@gmail.com" required>
       </mat-form-field>
       <div>
         <button mat-button matStepperPrevious>Back</button>
@@ -38,4 +37,10 @@
     </div>
   </mat-step>
 </mat-stepper>
-<app-login-error *ngIf="auth.loginError"></app-login-error>
+<mat-progress-bar mode="query" *ngIf="auth.hasClicked" style="margin-bottom: 10px;"></mat-progress-bar>
+<app-login-error *ngIf="auth.loginError" ></app-login-error>
+<div class="center-a">
+  <a mat-raised-button href="/changePassword">Change password</a>
+</div>
+
+

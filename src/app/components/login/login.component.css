@@ -36,3 +36,13 @@ button.mat-button {
 .mat-icon {
   cursor: pointer;
 }
+
+.center-a {
+  display: flex;
+  justify-content: center;
+}
+
+*{
+  overflow: hidden;
+}
+

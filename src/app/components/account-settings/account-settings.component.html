@@ -1,17 +1,17 @@
 <h1>ACCOUNT SETTINGS</h1>
-<p>Change your account settings here.</p>
-<p>Not filled gap will remain the same as before.</p>
+<p>In order to change this values, we need more checks...</p>
 <form [formGroup]="settingsForm" (ngSubmit)="onSubmit()" class="container">
+  <div>
+    <a mat-raised-button href="/changePassword">Change password</a>
+  </div>
+
+  <div>
+    <a mat-raised-button href="/changeEmail">Change email</a>
+  </div>
+
+  <p>Not filled gap will remain the same as before.</p>
   <mat-form-field>
     <input matInput placeholder="Username" formControlName="username">
-  </mat-form-field>
-
-  <mat-form-field>
-    <input matInput placeholder="Email" formControlName="email">
-  </mat-form-field>
-
-  <mat-form-field>
-    <input matInput placeholder="Password" formControlName="password" type="password">
   </mat-form-field>
 
   <mat-form-field>
@@ -26,8 +26,10 @@
     <textarea matInput placeholder="Bio" formControlName="bio"></textarea>
   </mat-form-field>
 
+  <div>
+    <button mat-raised-button (click)=" triggerSelectFile(fileInput) ">Select an image<input type="file" style="display: none;" #fileInput></button>
+  </div>
 
-  <input type="file" id="ProfilePicture" (change)="onFileChange($event)" formControlName="ProfilePicture">
 
 
   <button mat-raised-button color="primary" (click)="onSubmit()">Save Changes</button>

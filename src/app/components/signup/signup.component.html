@@ -49,4 +49,5 @@
     </div>
   </mat-step>
 </mat-stepper>
+<mat-progress-bar mode="query" *ngIf="auth.hasClicked"></mat-progress-bar>
 <app-signup-error *ngIf="auth.signupError"></app-signup-error>
