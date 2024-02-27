@@ -1,4 +1,20 @@
+<ng-template #content let-offcanvas>
+	<div class="offcanvas-header">
+		<h4 class="offcanvas-title">Password rules</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+	</div>
+	<div class="offcanvas-body">
+		<p>Password is at least <b>8 characters long</b>, contains at least <b>one uppercase letter</b>,<br><b>one lowercase letter</b>, <b>one number</b>, and <b>one special character</b>!</p>
+	</div>
+</ng-template>
 <mat-tab-group>
   <mat-tab label="Login" > <app-login></app-login></mat-tab>
   <mat-tab label="Signup"> <app-signup></app-signup></mat-tab>
 </mat-tab-group>
+<button class="btn btn-lg btn-outline-primary mb-2 me-2" id="passwordRules" (click)="openBottom(content)">Password rules</button>
+<div class="center-a" style="margin-top: 20px;">
+  <a href="/api/auth/googleAuth">
+    <button mat-raised-button>Authenticate with google</button>
+    <img src="assets/images/googleLogo.png" alt="google" style="width: 30px; height: 30px; margin-left: 10px;">
+  </a>
+</div>

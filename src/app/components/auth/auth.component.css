@@ -1,0 +1,14 @@
+p{
+  text-align: center;
+}
+
+#passwordRules{
+  position:fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.center-a {
+  display: flex;
+  justify-content: center;
+}

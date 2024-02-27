@@ -5,6 +5,8 @@ import {StepperOrientation} from '@angular/material/stepper';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-signup',
@@ -28,7 +30,9 @@ export class SignupComponent{
   constructor(
     private _formBuilder: FormBuilder,
     breakpointObserver: BreakpointObserver,
-    public auth: AuthService
+    public auth: AuthService,
+    public user: UserService,
+    private _snackBar: MatSnackBar
   ) {
     this.stepperOrientation = breakpointObserver
       .observe('(min-width: 800px)')
@@ -38,6 +42,10 @@ export class SignupComponent{
   createUser(){
     let username = this.firstFormGroup.get('firstCtrl')?.value!
     let password = this.secondFormGroup.get('secondCtrl')?.value!
+    if(!this.user.checkPassword(password)){
+      this._snackBar.open('Password not secure enough', 'Close');
+      return;
+    }
     let email = this.thirdFormGroup.get('thirdCtrl')?.value!
     console.log(email, username, password)
     this.auth.createUser(username, password, email)

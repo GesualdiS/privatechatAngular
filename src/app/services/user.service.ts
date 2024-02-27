@@ -7,6 +7,10 @@ interface resultResponse {
   result: string;
 
 }
+interface resultEmailAndUsernameResponse {
+  username: string,
+  email: string
+}
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +45,15 @@ export class UserService {
 
   changeEmail(token: string, oldEmail: string, newEmail: string): Observable<resultResponse> {
     return this.http.put<resultResponse>(`${this.auth.protocolGetter}://${this.auth.hostnameGetter}/api/crud/updateUserEmail/${token}`, { oldEmail: oldEmail, newEmail: newEmail }, { withCredentials: true });
+  }
+
+  checkPassword(password: string): boolean {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return passwordRegex.test(password);
+  }
+
+  getUsernameAndEmail(): Observable<resultEmailAndUsernameResponse> {
+    return this.http.get<resultEmailAndUsernameResponse>(`${this.auth.protocolGetter}://${this.auth.hostnameGetter}/api/crud/getUsernameAndEmail`, { withCredentials: true });
   }
 
 }

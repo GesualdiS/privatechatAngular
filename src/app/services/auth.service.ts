@@ -27,13 +27,12 @@ export class AuthService {
   public signupError = false
   public loginError = false
   public hasClicked = false
-  public sasToken = "st=2024-02-03T19:51:56Z&se=2024-02-10T03:51:56Z&si=images&sip=0.0.0.0-255.255.255.255&spr=https&sv=2022-11-02&sr=c&sig=a%2BrMBb%2Fcljb27AM7CaisOcBCoGUcZYWi36koQrwJUZY%3D"
+  public sasToken!: String
 
   public blobImagesUrl = "https://privatechatstorage.blob.core.windows.net/images"
 
-  private hostname = "localhost:3000"
-  user: any;
-  private protocol = "http";
+  private hostname = "privatechat.shop"
+  private protocol = "https";
 
   get protocolGetter() {
     return this.protocol;
@@ -119,6 +118,6 @@ export class AuthService {
   }
 
   getSasToken(){
-    return this.http.get<getSasTokenResponse>(`${this.protocol}://${this.hostname}/api/images/getSasToken`)
+    return this.http.get<getSasTokenResponse>(`${this.protocol}://${this.hostname}/api/images/getSasToken`, { withCredentials: true })
   }
 }

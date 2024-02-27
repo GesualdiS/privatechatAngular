@@ -1,11 +1,13 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
-import { Component } from '@angular/core';
+import { Component, inject, TemplateRef } from '@angular/core';
+import {NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { hide } from '@popperjs/core';
 import { Observable, map } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -14,6 +16,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./change-password.component.css']
 })
 export class ChangePasswordComponent {
+  private offcanvasService = inject(NgbOffcanvas);
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
   });
@@ -70,9 +73,19 @@ export class ChangePasswordComponent {
   }
 
   changePassword() {
-    this.user.changePassword(this.firstFormGroup.value.firstCtrl!, this.secondFormGroup.value.secondCtrl!).subscribe((data) => {
-      this._snackBar.open(data.result, 'Close');
-    })
+    const password = this.firstFormGroup.value.firstCtrl!;
+    if(this.user.checkPassword(password) && password === this.thirdFormGroup.value.thirdCtrl){
+      this.user.changePassword(password, this.secondFormGroup.value.secondCtrl!).subscribe((data) => {
+        this._snackBar.open(data.result, 'Close');
+      })
+    }else{
+      this._snackBar.open('Password not secure enough or different', 'Close');
+    }
+
   }
+
+  openBottom(content: TemplateRef<any>) {
+		this.offcanvasService.open(content, { position: 'bottom' });
+	}
 
 }

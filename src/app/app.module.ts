@@ -42,6 +42,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { ChangeEmailComponent } from './components/change-email/change-email.component';
+import { AfterGoogleLoginComponent } from './components/after-google-login/after-google-login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +62,8 @@ import { ChangeEmailComponent } from './components/change-email/change-email.com
     FeaturesComponent,
     AccountSettingsComponent,
     ChangePasswordComponent,
-    ChangeEmailComponent
+    ChangeEmailComponent,
+    AfterGoogleLoginComponent
   ],
   imports: [
     BrowserModule,

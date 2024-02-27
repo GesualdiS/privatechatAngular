@@ -16,11 +16,13 @@ import { FeaturesComponent } from './components/features/features.component';
 import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { ChangeEmailComponent } from './components/change-email/change-email.component';
+import { AfterGoogleLoginComponent } from './components/after-google-login/after-google-login.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   {path: 'home', component: HomeComponent, children: [
     { path: 'verifyEmail', component:  VerifyEmailComponent},
+    { path: 'afterGoogleLogin', component:  AfterGoogleLoginComponent},
     { path: 'afterLogin', component:  AfterLoginComponent},
     {path: 'logout', component: LogoutComponent},
     { path: 'verify-email', component: AfterVerifyEmailComponent },
@@ -41,6 +43,7 @@ const routes: Routes = [
     { path: 'signupError', component:  SignupErrorComponent},
   ]},
   { path: 'addChat', component: AddChatComponent },
+  { path: '**', redirectTo: '/home'},
 ];
 
 @NgModule({
